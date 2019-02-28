@@ -1,6 +1,11 @@
 
 app.factory("recipesSrv", function($http, $q, $log, userSrv) {
 
+    // In this object we will save an array of recipes per user id
+    // If a user id doesn't have an entry in this object it means that
+    // the data for this user was never loaded
+    var recipes = {};
+
     function Recipe(plainRecipe) {
         this.id = plainRecipe.id;
         this.name = plainRecipe.name;
@@ -14,25 +19,35 @@ app.factory("recipesSrv", function($http, $q, $log, userSrv) {
 
     function getActiveUserRecipes() {
         var async = $q.defer();
-        var recipes = [];
         var activeUserId = userSrv.getActiveUser().id;
 
-        // getting all recipes from JSON and then pushing to the array only those that 
-        // were created by the active user
-        $http.get("app/model/data/recipes.json").then(function(res) {
-            var jsonRecipes = res.data;
-            for(var i = 0; i < jsonRecipes.length; i++) {
-                if (jsonRecipes[i].userId === activeUserId) {
-                    recipes.push(new Recipe(jsonRecipes[i]));
+        // Loading the recipes from JSON only in first time, for the rest of calls returning the array
+        if (recipes[activeUserId]) {
+            async.resolve(recipes[activeUserId]);
+        } else {
+            recipes[activeUserId] = [];
+            // getting all recipes from JSON and then pushing to the array only those that 
+            // were created by the active user
+            $http.get("app/model/data/recipes.json").then(function(res) {
+                var jsonRecipes = res.data;
+                for(var i = 0; i < jsonRecipes.length; i++) {
+                    if (jsonRecipes[i].userId === activeUserId) {
+                        recipes[activeUserId].push(new Recipe(jsonRecipes[i]));
+                    }
                 }
-            }
-            async.resolve(recipes);
-        }, function(err) {
-            async.reject(err);
-        })
+                async.resolve(recipes[activeUserId]);
+            }, function(err) {
+                async.reject(err);
+            });
+        }
 
         return async.promise;
     }
+
+
+    // function createRecipe(name, description, imgUrl, ingredients, steps, duration) {
+
+    // }
 
     return {
         getActiveUserRecipes: getActiveUserRecipes
