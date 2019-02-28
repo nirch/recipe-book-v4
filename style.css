@@ -2,3 +2,8 @@
 .login {
     width: 500px;
 }
+
+.recipe-card > img {
+    height: 300px;
+    object-fit: cover;
+}

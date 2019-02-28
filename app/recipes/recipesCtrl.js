@@ -27,7 +27,35 @@ app.controller("recipesCtrl", function($scope, userSrv, $location) {
             "ingredients": "Eggs, Tomato, Onion",
             "steps": "Put eggs and then tomato",
             "duration": 15
+        },
+        {
+            "id": "2",
+            "name": "Shawarma",
+            "description": "Turkey in pita",
+            "imgUrl": "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2014/2/28/0/ZB0505H_Chicken-Shawarma-with-Tomato-Cucumber-Relish-and-Tahini-Sauce_s4x3.jpg.rend.hgtvcom.616.462.suffix/1485881272706.jpeg",
+            "ingredients": "Eggs, Tomato, Onion",
+            "steps": "Put eggs and then tomato",
+            "duration": 15
+        },
+        {
+            "id": "2",
+            "name": "Shawarma",
+            "description": "Turkey in pita",
+            "imgUrl": "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2014/2/28/0/ZB0505H_Chicken-Shawarma-with-Tomato-Cucumber-Relish-and-Tahini-Sauce_s4x3.jpg.rend.hgtvcom.616.462.suffix/1485881272706.jpeg",
+            "ingredients": "Eggs, Tomato, Onion",
+            "steps": "Put eggs and then tomato",
+            "duration": 15
+        },
+        {
+            "id": "2",
+            "name": "Shawarma",
+            "description": "Turkey in pita",
+            "imgUrl": "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2014/2/28/0/ZB0505H_Chicken-Shawarma-with-Tomato-Cucumber-Relish-and-Tahini-Sauce_s4x3.jpg.rend.hgtvcom.616.462.suffix/1485881272706.jpeg",
+            "ingredients": "Eggs, Tomato, Onion",
+            "steps": "Put eggs and then tomato",
+            "duration": 15
         }
+        
     ]
 
 })
