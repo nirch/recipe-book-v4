@@ -38,10 +38,14 @@ app.factory("userSrv", function($http, $q, $log) {
         return activeUser ? true : false;
     }
 
+    function logout() {
+        activeUser = null;
+    }
 
     return {
         login: login,
-        isLoggedIn: isLoggedIn
+        isLoggedIn: isLoggedIn,
+        logout: logout
     }
 
 });
