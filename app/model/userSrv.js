@@ -31,19 +31,17 @@ app.factory("userSrv", function($http, $q, $log) {
             async.reject(error);
         })
 
-        // if (email === "nir@nir.com" && pwd === "123") {
-        //     activeUser = new User({id: "1", fname: "Nir", lname: "Channes", email:"nir@nir.com"});
-        //     async.resolve(activeUser);
-        // } else {
-        //     async.reject();
-        // }
-
         return async.promise;
+    }
+
+    function isLoggedIn() {
+        return activeUser ? true : false;
     }
 
 
     return {
-        login: login
+        login: login,
+        isLoggedIn: isLoggedIn
     }
 
 });
