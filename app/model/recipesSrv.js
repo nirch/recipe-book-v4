@@ -45,12 +45,31 @@ app.factory("recipesSrv", function($http, $q, $log, userSrv) {
     }
 
 
-    // function createRecipe(name, description, imgUrl, ingredients, steps, duration) {
+    function createRecipe(name, description, imgUrl, ingredients, steps, duration) {
+        var async = $q.defer();
+        
+        var activeUserId = userSrv.getActiveUser().id;
+        var newRecipeId = "3dddd";  // the id should be unique
+        var newRecipeObject = {
+            id: newRecipeId,
+            name: name, 
+            description: description,
+            imgUrl: imgUrl,
+            ingredients: ingredients,
+            steps: steps,
+            duration: duration,
+            userId: activeUserId
+        }
+        var newRecipe = new Recipe(newRecipeObject);
+        recipes[activeUserId].push(newRecipe);
+        async.resolve(newRecipe, recipes[activeUserId]);
 
-    // }
+        return async.promise;
+    }
 
     return {
-        getActiveUserRecipes: getActiveUserRecipes
+        getActiveUserRecipes: getActiveUserRecipes,
+        createRecipe: createRecipe
     }
 
 })
