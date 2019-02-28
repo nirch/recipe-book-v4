@@ -1,6 +1,6 @@
 
 .login {
-    width: 500px;
+    max-width: 500px;
 }
 
 .recipe-card > img {
