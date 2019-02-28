@@ -1,14 +1,16 @@
 
-app.controller("loginCtrl", function($scope, $location) {
+app.controller("loginCtrl", function($scope, $location, userSrv) {
 
     $scope.invalidLogin = false;
 
     $scope.login = function() {
-        if ($scope.email === "nir@nir.com" && $scope.pwd === "123") {
+
+        userSrv.login($scope.email, $scope.pwd).then(function(activeUser) {
             $location.path("/recipes");
-        } else {
+        }, function() {
             $scope.invalidLogin = true;
-        }
+        });
+        
     }
 
 })
