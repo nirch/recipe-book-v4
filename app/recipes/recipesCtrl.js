@@ -1,6 +1,6 @@
 
-app.controller("recipesCtrl", function($scope) {
+app.controller("recipesCtrl", function($scope, userSrv) {
 
-    $scope.test = "dddd";
+    $scope.activeUser = userSrv.getActiveUser();
 
 })
