@@ -1,5 +1,5 @@
 
-var app = angular.module("recipeBook", ["ngRoute"]);
+var app = angular.module("recipeBook", ["ngRoute", "ngImageInputWithPreview"]);
 
 app.config(function($routeProvider) {
     $routeProvider.when("/", {
